@@ -37,4 +37,5 @@ jobs:
           echo 'github.run_number' ${{ github.run_number }}          
           echo 'github.repository' ${{ github.repository }}     
           echo 'github.job' ${{ github.job }}
+          echo 'https://github.com/'${{ github.repository }}'/actions/runs/'${{ github.run_id }}
 
