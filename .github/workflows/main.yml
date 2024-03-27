@@ -52,12 +52,19 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     # Comment
       #     comment: "Please Open the upload artifacts for detail of the changes"
+      - name: Print
+        run: |
+          echo ${{steps.upload_build_artifact.outputs}}
+          echo ${steps.upload_build_artifact.outputs}
+          echo $steps.upload_build_artifact.outputs
+          echo $(steps.upload_build_artifact.outputs)
+          echo contains(${{steps.upload_build_artifact.outputs}}, "success")
       - name: Comments on PR 
         uses: mshick/add-pr-comment@v2
         if: always()
         with:
           message: |
             **Howdie!**
-            ${{upload_build_artifact.outputs}}
+
           message-failure: |
             Uh oh!
