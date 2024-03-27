@@ -62,6 +62,6 @@ jobs:
         with:
           message: |
             **Howdie!**
-            ${{needs.build.outputs.upload_build_artifact}}
+            ${{needs.build.outputs}}
           message-failure: |
             Uh oh!
