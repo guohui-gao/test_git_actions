@@ -36,6 +36,7 @@ jobs:
           echo test, and deploy your project. > result.output
           
       - name: Upload a Build Artifact
+        id: upload_build_artifact
         uses: actions/upload-artifact@v2.2.4
         with:
           # Artifact name
@@ -51,12 +52,16 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     # Comment
       #     comment: "Please Open the upload artifacts for detail of the changes"
-
+  comment: 
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Comments on PR 
         uses: mshick/add-pr-comment@v2
         if: always()
         with:
           message: |
             **Howdie!**
+            needs.build.outputs.upload_build_artifact
           message-failure: |
             Uh oh!
