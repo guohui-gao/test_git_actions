@@ -63,6 +63,7 @@ jobs:
           message-failure: |
             Uh oh!
       - name: Print
-        if: contains(steps.upload_build_artifact.outputs, 'Artifact upload_artifact has been successfully uploaded!')  # Check for success string in output
+        #if: contains(steps.upload_build_artifact.outputs, 'Artifact upload_artifact has been successfully uploaded!')  # Check for success string in output
+        if: always()
         run: |
-          echo ${{steps.upload_build_artifact.outputs}}
+          echo ${{steps.upload_build_artifact.outputs.url_output}}
