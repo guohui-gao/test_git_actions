@@ -43,19 +43,16 @@ jobs:
           name: upload_artifact
           # A file, directory or wildcard pattern that describes what to upload
           path: result.output
-      # - name: Comment current pull request
-      #   # You may pin to the exact commit or the version.
-      #   # uses: alawiii521/current-pr-comment@4d4d98a002a3994cb185d1e28e909bfabb0585f0
-      #   uses: alawiii521/current-pr-comment@v1.0
-      #   with:
-      #     # Github token
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     # Comment
-      #     comment: "Please Open the upload artifacts for detail of the changes"
-      - name: Print
-        if: steps.upload_build_artifact.outputs == contains('Artifact upload_artifact has been successfully uploaded!')  # Check for success string in output
-        run: |
-          echo ${{steps.upload_build_artifact.outputs}}
+      - name: Comment current pull request
+        # You may pin to the exact commit or the version.
+        # uses: alawiii521/current-pr-comment@4d4d98a002a3994cb185d1e28e909bfabb0585f0
+        uses: alawiii521/current-pr-comment@v1.0
+        with:
+          # Github token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Comment
+          comment: "Please Open the upload artifacts for detail of the changes"
+      # Comments
       - name: Comments on PR 
         uses: mshick/add-pr-comment@v2
         if: always()
@@ -65,3 +62,7 @@ jobs:
 
           message-failure: |
             Uh oh!
+      - name: Print
+        if: steps.upload_build_artifact.outputs == contains('Artifact upload_artifact has been successfully uploaded!')  # Check for success string in output
+        run: |
+          echo ${{steps.upload_build_artifact.outputs}}
